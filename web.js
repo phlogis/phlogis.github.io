@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-function toggleSearch() {
+/* サイト内検索は実装できていないので、コメントアウト */
+/* function toggleSearch() {
     const searchInput = document.getElementById('search-input');
     if (searchInput.style.display === 'none' || searchInput.style.display === '') {
         searchInput.style.display = 'inline-block';
@@ -42,4 +43,4 @@ document.getElementById('search-input').addEventListener('keypress', function(e)
         alert('Search functionality would be implemented here.');
         this.value = '';
     }
-});
+}) */;
