@@ -1,23 +1,30 @@
 <div class="sidebar">
-    <h3><a href="index.html">SAKAKI Tomohisa's website</a></h3>
+    <h3><a href="index.html">SAKAKI <br /> Tomohisa's <br /> website</a></h3>
     <ul>
-      <li><a href="index.html">ホーム</a>
-        <ul>
-          <li><a href="note.html">ノート</a>
-            <ul>
-              <li>力学</li>
-              <li>電磁気学</li>
-              <li>量子力学</li>
-              <li>統計力学</li>
+        <li class="expandable home" data-id="home">
+            <span><a href="index.html">ホーム</a></span>
+            <ul class="submenu">
+                <!-- <li><a href="career.html">経歴詳細</a></li>
+                <li><a href="research.html">研究</a></li> -->
+                <li class="expandable home" data-id="home">
+                    <span>ノート</span>
+                    <ul class="submenu">
+                        <li><a href="/note/CM.html">力学</a></li>
+                        <li><a href="/note/EleMag.html">電磁気学</a></li>
+                        <li><a href="/note/QM.html">量子力学</a></li>
+                        <li><a href="/note/StatsMech.html">統計力学</a></li>
+                    </ul>
+                    </li>
+
+                <li class="expandable home" data-id="home">
+                    <span>院試</span>
+                    <ul class="submenu">
+                        <li><a href="/Exam_html/exam.html">阪大</a></li>
+                        <li><a href="/Exam_html/exam_toudai.html">東大</a></li>
+                    </ul>
+                    </li>
             </ul>
-          </li>
-          <li>院試
-            <ul>
-              <li><a href="exam.html">阪大</a></li>
-              <li><a href="exam_toudai.html">東大</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
+        </li>
     </ul>
-  </div>
+</div>
+

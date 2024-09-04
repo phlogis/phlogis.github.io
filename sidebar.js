@@ -1,6 +1,41 @@
+
 document.addEventListener('DOMContentLoaded', function() {
+    // 現在のページのパスを取得
+    const currentPath = window.location.pathname;
+    // サイドバーとスクリプトのパスを設定
+    let sidebarPath, scriptPath;
+
+    if (currentPath.includes('/Exam_html/') || currentPath.includes('/note/')) {
+        sidebarPath = '../sidebar.html';
+        scriptPath = '/';
+    } else {
+        sidebarPath = 'sidebar.html';
+        scriptPath = '';
+    }
+
+    fetch(sidebarPath)
+        .then(response => response.text())
+        .then(data => {
+            // サイドバーの内容を挿入
+            document.getElementById('sidebar-container').innerHTML = data;
+            // リンクのパスを修正
+            adjustSidebarLinks(scriptPath);
+            initializeSidebar();
+        });
+});
+
+function adjustSidebarLinks(scriptPath) {
+    const links = document.querySelectorAll('#sidebar a');
+    links.forEach(link => {
+        if (link.getAttribute('href').startsWith('/')) {
+            link.setAttribute('href', scriptPath + link.getAttribute('href').slice(1));
+        }
+    });
+}
+
+
+function initializeSidebar() {
     document.querySelectorAll('.expandable').forEach(item => {
-        // 初期状態ですべての展開可能な項目を展開状態にする
         item.classList.add('expanded');
         const submenu = item.querySelector('.submenu');
         if (submenu) {
@@ -25,22 +60,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
-
-/* サイト内検索は実装できていないので、コメントアウト */
-/* function toggleSearch() {
-    const searchInput = document.getElementById('search-input');
-    if (searchInput.style.display === 'none' || searchInput.style.display === '') {
-        searchInput.style.display = 'inline-block';
-        searchInput.focus();
-    } else {
-        searchInput.style.display = 'none';
-    }
 }
-
-document.getElementById('search-input').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        alert('Search functionality would be implemented here.');
-        this.value = '';
-    }
-}) */;
