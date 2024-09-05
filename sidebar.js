@@ -25,11 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 });
 
+
 function adjustSidebarLinks(scriptPath) {
     const links = document.querySelectorAll('#sidebar a');
     links.forEach(link => {
         if (link.getAttribute('href').startsWith('/')) {
             link.setAttribute('href', scriptPath + link.getAttribute('href').slice(1));
+        } else if (!link.getAttribute('href').startsWith('http') && !link.getAttribute('href').startsWith('#')) {
+            link.setAttribute('href', scriptPath + link.getAttribute('href'));
         }
     });
 }
