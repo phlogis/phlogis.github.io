@@ -1,9 +1,8 @@
 // ベースURLを設定（リポジトリ名を含む）
 const baseUrl = '/phlogis.github.io'; // リポジトリ名に応じて変更してください
 
-// メインコンテンツを動的に読み込む関数（修正）
+// メインコンテンツを動的に読み込む関数
 function loadContent(url) {
-    // GitHub Pages のベースURLを考慮
     const fullUrl = baseUrl + url;
     fetch(fullUrl)
         .then(response => response.text())
@@ -29,7 +28,7 @@ function updateActiveLink(url) {
     });
 }
 
-// サイドバーを読み込む関数（修正）
+// サイドバーを読み込む関数
 function loadSidebar() {
     fetch(baseUrl + '/sidebar.html')
         .then(response => response.text())
@@ -40,7 +39,7 @@ function loadSidebar() {
         });
 }
 
-// ナビゲーションの設定（修正）
+// ナビゲーションの設定
 function setupNavigation() {
     const links = document.querySelectorAll('#sidebar a');
     links.forEach(link => {
@@ -48,9 +47,28 @@ function setupNavigation() {
             e.preventDefault();
             const url = this.getAttribute('href').replace(baseUrl, '');
             loadContent(url);
+            toggleSidebar(); // サイドバーを閉じる
         });
     });
 }
+
+// サイドバーの開閉を制御する関数
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    sidebar.classList.toggle('active');
+    if (sidebar.classList.contains('active')) {
+        overlay.style.display = 'block';
+    } else {
+        overlay.style.display = 'none';
+    }
+}
+
+// サイドバートグルボタンのイベントリスナー
+document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
+
+// オーバーレイをクリックしたときにサイドバーを閉じる
+document.getElementById('sidebar-overlay').addEventListener('click', toggleSidebar);
 
 // ブラウザの戻る/進むボタンのハンドリング
 window.addEventListener('popstate', function(e) {
@@ -59,7 +77,7 @@ window.addEventListener('popstate', function(e) {
     }
 });
 
-// 初期化（修正）
+// 初期化
 document.addEventListener('DOMContentLoaded', function() {
     loadSidebar();
     // 初期コンテンツのロード
