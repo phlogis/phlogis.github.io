@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentPath = window.location.pathname;
     // サイドバーとスクリプトのパスを設定
     let sidebarPath, scriptPath;
-
+    // Exam_html ディレクトリまたは note ディレクトリ内のページの場合は、親ディレクトリにある sidebar.html とスクリプトを読み込む必要がある。
+    // さらにディレクトリを増やすときは、条件を追加する。
     if (currentPath.includes('/Exam_html/') || currentPath.includes('/note/')) {
         sidebarPath = '../sidebar.html';
-        scriptPath = '/';
+        scriptPath = '../';
     } else {
         sidebarPath = 'sidebar.html';
         scriptPath = '';
