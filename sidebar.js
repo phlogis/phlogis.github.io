@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     // 現在のページのパスを取得
     const currentPath = window.location.pathname;
@@ -25,18 +24,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 });
 
-
 function adjustSidebarLinks(scriptPath) {
     const links = document.querySelectorAll('#sidebar a');
     links.forEach(link => {
-        if (link.getAttribute('href').startsWith('/')) {
-            link.setAttribute('href', scriptPath + link.getAttribute('href').slice(1));
-        } else if (!link.getAttribute('href').startsWith('http') && !link.getAttribute('href').startsWith('#')) {
-            link.setAttribute('href', scriptPath + link.getAttribute('href'));
+        const href = link.getAttribute('href');
+        if (href.startsWith('/')) {
+            link.setAttribute('href', scriptPath + href.slice(1));
+        } else if (!href.startsWith('http') && !href.startsWith('#') && !href.startsWith('../')) {
+            link.setAttribute('href', scriptPath + href);
         }
     });
 }
-
 
 function initializeSidebar() {
     document.querySelectorAll('.expandable').forEach(item => {
